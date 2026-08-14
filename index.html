@@ -1,1 +1,775 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Památník Josefa Janovského (1891–1942), lesního hajného ze Strání, příslušníka protifašistického odboje (organizace VELA), vězně KT Mauthausen popraveného v Linci 4. února 1942, nositele Československého válečného kříže 1939 in memoriam.">
+    <title>Josef Janovský (1891–1942) — In Memoriam</title>
+    <style>
+        :root {
+            --gold: #dfb76c;
+            --dark: #1a1a1a;
+            --paper: #f5f1e8;
+            --paper-line: #e6dfce;
+            --ink: #2b2722;
+            --muted: #6b6458;
+        }
 
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background-color: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+        }
+
+        /* Hlavička */
+        header {
+            background-color: var(--dark);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .logo {
+            color: var(--gold);
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        nav ul { list-style: none; display: flex; gap: 22px; flex-wrap: wrap; }
+        nav a {
+            color: #cfc8ba;
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        nav a:hover, nav a:focus { color: var(--gold); }
+
+        /* Hero */
+        .hero {
+            background:
+                linear-gradient(rgba(15,15,15,0.78), rgba(15,15,15,0.88)),
+                url('img01.jpg') center/cover no-repeat var(--dark);
+            color: #f5f1e8;
+            text-align: center;
+            padding: 110px 20px 90px;
+            border-bottom: 4px solid var(--gold);
+        }
+        .hero h1 {
+            font-size: 3rem;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+            font-weight: normal;
+        }
+        .hero .dates {
+            color: var(--gold);
+            font-size: 1.4rem;
+            letter-spacing: 6px;
+            margin-bottom: 22px;
+        }
+        .hero .epitaph {
+            max-width: 720px;
+            margin: 0 auto;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #ded7c8;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+        section { padding: 60px 0; border-bottom: 1px solid var(--paper-line); }
+        section:last-of-type { border-bottom: none; }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 28px;
+            font-weight: normal;
+            position: relative;
+            padding-bottom: 12px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0; bottom: 0;
+            width: 60px; height: 3px;
+            background-color: var(--gold);
+        }
+
+        .eyebrow {
+            display: block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 6px;
+            font-style: normal;
+        }
+
+        p + p { margin-top: 15px; }
+
+        .bio-grid {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 35px;
+            align-items: start;
+        }
+        .profile-img {
+            width: 100%;
+            border: 1px solid var(--paper-line);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+            background: #ece6d8;
+        }
+
+        .facts {
+            list-style: none;
+            margin-top: 22px;
+            border-top: 1px solid var(--paper-line);
+        }
+        .facts li {
+            display: flex;
+            gap: 16px;
+            padding: 9px 0;
+            border-bottom: 1px solid var(--paper-line);
+            font-size: 0.95rem;
+        }
+        .facts .k {
+            flex: 0 0 165px;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.78rem;
+            padding-top: 3px;
+        }
+        .facts .v { flex: 1; }
+
+        blockquote {
+            border-left: 3px solid var(--gold);
+            margin: 26px 0;
+            padding: 6px 22px;
+            font-style: italic;
+            color: #4a4438;
+            background: #efe9db;
+        }
+        blockquote .src {
+            display: block;
+            font-size: 0.82rem;
+            font-style: normal;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .details-list { list-style: none; }
+        .details-list li {
+            padding: 12px 0 12px 26px;
+            position: relative;
+            border-bottom: 1px solid var(--paper-line);
+        }
+        .details-list li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 20px;
+            width: 8px; height: 8px;
+            background: var(--gold);
+            transform: rotate(45deg);
+        }
+
+        /* Časová osa */
+        .timeline { list-style: none; position: relative; margin-left: 8px; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px; top: 6px; bottom: 6px;
+            width: 2px; background: var(--paper-line);
+        }
+        .timeline li { position: relative; padding: 0 0 26px 38px; }
+        .timeline li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 5px;
+            width: 16px; height: 16px;
+            border-radius: 50%;
+            background: var(--paper);
+            border: 3px solid var(--gold);
+        }
+        .timeline .date {
+            display: block;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 2px;
+        }
+        .timeline .ev { font-weight: bold; color: var(--dark); }
+
+        /* Galerie */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+            gap: 22px;
+            margin-top: 30px;
+        }
+        .gallery-item {
+            background: #fff;
+            border: 1px solid var(--paper-line);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 320px;
+            object-fit: contain;
+            padding: 8px;
+            display: block;
+            background: #ece6d8;
+            border-bottom: 1px solid var(--paper-line);
+        }
+        .gallery-item .cap { padding: 12px 14px; }
+        .gallery-item .cap strong { display: block; font-size: 0.92rem; }
+        .gallery-item .cap span { font-size: 0.82rem; color: var(--muted); }
+
+        .note {
+            font-size: 0.85rem;
+            color: var(--muted);
+            font-style: italic;
+            margin-top: 8px;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: #9a9384;
+            padding: 46px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--gold);
+        }
+        footer .honor { color: #ded7c8; font-size: 1.05rem; margin-bottom: 16px; }
+        footer .sources { font-size: 0.78rem; color: #6f6859; max-width: 760px; margin: 0 auto; }
+
+        @media (max-width: 768px) {
+            header { position: static; }
+            .hero { padding: 70px 20px 55px; }
+            .hero h1 { font-size: 2.1rem; }
+            .bio-grid { grid-template-columns: 1fr; }
+            .profile-img { max-width: 220px; }
+            .facts li { flex-direction: column; gap: 2px; }
+            .facts .k { flex-basis: auto; }
+        }
+
+        /* Klikací náhledy + lightbox */
+        .gallery-item img { cursor: zoom-in; transition: opacity 0.15s; }
+        .gallery-item img:hover { opacity: 0.85; }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(12,11,9,0.94);
+            padding: 30px;
+            overflow: auto;
+            text-align: center;
+        }
+        .lightbox.open { display: block; }
+        .lightbox img {
+            max-width: 100%;
+            margin: 0 auto;
+            box-shadow: 0 6px 40px rgba(0,0,0,0.6);
+            background: #fff;
+        }
+        .lightbox .lb-cap {
+            color: #ded7c8;
+            font-size: 0.9rem;
+            margin-top: 14px;
+            font-style: italic;
+        }
+        .lightbox .lb-close {
+            position: fixed;
+            top: 18px; right: 26px;
+            color: var(--gold);
+            font-size: 2.4rem;
+            line-height: 1;
+            cursor: pointer;
+            text-decoration: none;
+            font-family: Georgia, serif;
+        }
+        .lightbox .lb-hint {
+            position: fixed;
+            bottom: 16px; left: 0; right: 0;
+            color: #6f6859;
+            font-size: 0.78rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Vložené spisy (PDF) */
+        .spis-block { margin-top: 30px; }
+        .spis-block h3 {
+            font-size: 1.15rem;
+            font-weight: normal;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+        .spis-block .spis-meta {
+            font-size: 0.82rem;
+            color: var(--muted);
+            margin-bottom: 14px;
+        }
+        .spis-frame {
+            width: 100%;
+            height: 760px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid var(--paper-line);
+            box-shadow: 0 3px 12px rgba(0,0,0,0.12);
+            background: #ece6d8;
+            padding: 12px;
+        }
+        .spis-frame canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto 14px;
+            background: #fff;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.22);
+        }
+        .spis-frame canvas:last-child { margin-bottom: 0; }
+        .pdf-loading {
+            padding: 24px 8px;
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-align: center;
+        }
+        .pdf-pagenum {
+            font-size: 0.72rem;
+            color: var(--muted);
+            text-align: right;
+            margin: -8px 2px 8px;
+        }
+        .spis-actions {
+            margin: 10px 0 40px;
+            font-size: 0.85rem;
+        }
+        .spis-actions a {
+            color: #715c1f;
+            text-decoration: none;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 1px;
+        }
+        .spis-actions a:hover { color: var(--dark); }
+
+        @media (max-width: 768px) {
+            .spis-frame { height: 500px; }
+            .lightbox { padding: 12px; }
+            .lightbox .lb-close { top: 8px; right: 14px; }
+        }
+
+        .lang-switch { display:flex; gap:6px; margin-left:auto; }
+        .lang-switch button {
+            font-family: inherit; font-size:0.7rem; letter-spacing:0.08em;
+            text-transform:uppercase; color:var(--muted); background:transparent;
+            border:1px solid rgba(223,183,108,0.35); border-radius:20px;
+            padding:5px 12px; cursor:pointer; transition:all .2s; line-height:1;
+        }
+        .lang-switch button:hover { color:var(--gold); border-color:var(--gold); }
+        .lang-switch button.active { color:var(--dark); background:var(--gold); border-color:var(--gold); font-weight:600; }
+        @media (max-width:768px){ .lang-switch{ width:100%; justify-content:center; margin:10px 0 0; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">In Memoriam</div>
+            <nav>
+                <ul>
+                    <li><a href="#biografie" data-i18n="nav_bio">Biografie</a></li>
+                    <li><a href="#prvni-valka" data-i18n="nav_wwi">1. světová válka</a></li>
+                    <li><a href="#odboj" data-i18n="nav_odboj">Odboj (VELA)</a></li>
+                    <li><a href="#zatceni" data-i18n="nav_zat">Zatčení a soud</a></li>
+                    <li><a href="#mauthausen" data-i18n="nav_mau">Mauthausen</a></li>
+                    <li><a href="#uznani" data-i18n="nav_uzn">Uznání</a></li>
+                    <li><a href="#galerie" data-i18n="nav_gal">Dokumenty</a></li>
+                    <li><a href="#spisy" data-i18n="nav_spis">Spisy (PDF)</a></li>
+                </ul>
+            </nav>
+            <div class="lang-switch" role="group" aria-label="Language">
+                <button type="button" data-lang="cs" onclick="setLang('cs')">Česky</button>
+                <button type="button" data-lang="en" onclick="setLang('en')">English</button>
+                <button type="button" data-lang="de" onclick="setLang('de')">Deutsch</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Josef Janovský</h1>
+        <p class="dates">1891 — 1942</p>
+        <p class="epitaph" data-i18n="hero_ep">„V uznání bojových zásluh, které získal v boji za osvobození Republiky Československé z nepřátelského obsazení.“</p>
+    </div>
+
+    <div class="container">
+
+        <section id="biografie">
+            <h2 class="section-title"><span class="eyebrow" data-i18n="eb_bio">Osobní profil</span><span data-i18n="t_bio">Lesník z moravsko-slovenského pomezí</span></h2>
+            <div class="bio-grid">
+                <div>
+                    <img src="img02.jpg" alt="Josef Janovský" class="profile-img">
+                </div>
+                <div>
+                    <p data-i18n="bio_p1"><strong>Josef Janovský</strong> se narodil 1. října 1891 v příhraniční obci Strání (okres Uherský Brod, dříve Uherské Hradiště) na moravsko-slovenském pomezí. Pocházel z domu čp. 91; byl synem domkáře Josefa Janovského staršího a Anny rozené Zajglové. Jeho matka Magdalena byla dcerou Martina Popelky, čtvrtníka ve Strání. V dobových dokladech je Janovský veden jako „půlčtvrtník“ (drobný rolník) a hajný ve Strání. Byl římským katolíkem a před válkou se hlásil k československé sociální demokracii.</p>
+                    <p data-i18n="bio_p2">S manželkou Magdalenou (rozenou Popelkovou) měl několik dětí — syny Martina, Josefa, Jana a Antonína a dcery Marii a Anežku. Nejstarší syn Martin se za války rovněž zapojil do převaděčské činnosti na hranici. Janovský pracoval jako obecní hajný (v německých záznamech „Waldheger“) a jako lesní dělník přímo na hranici v Bílých Karpatech. Dokonalá znalost zdejšího terénu se po nacistické okupaci v roce 1939 stala základem jeho odbojové činnosti.</p>
+                </div>
+            </div>
+
+            <ul class="facts">
+                <li><span class="k" data-i18n="f_naroz_k">Narození</span><span class="v" data-i18n="f_naroz_v">1. října 1891, Strání čp. 91, okres Uherský Brod</span></li>
+                <li><span class="k" data-i18n="f_pov_k">Povolání</span><span class="v" data-i18n="f_pov_v">Obecní hajný a lesní dělník</span></li>
+                <li><span class="k" data-i18n="f_rod_k">Rodina</span><span class="v" data-i18n="f_rod_v">Manželka Magdalena roz. Popelková; děti Martin, Marie, Anežka, Josef, Jan a Antonín</span></li>
+                <li><span class="k" data-i18n="f_odb_k">Odboj</span><span class="v" data-i18n="f_odb_v">Podzemní vojska lidové armády „VELA“ — východní Morava a Slezsko</span></li>
+                <li><span class="k" data-i18n="f_umr_k">Úmrtí</span><span class="v" data-i18n="f_umr_v">Popraven 4. února 1942, Linec (KT Mauthausen)</span></li>
+            </ul>
+        </section>
+
+        <section id="prvni-valka">
+            <h2 class="section-title"><span class="eyebrow" data-i18n="eb_wwi">Rakousko-uherská armáda</span><span data-i18n="t_wwi">Za první světové války</span></h2>
+            <p data-i18n="wwi_p1">Josef Janovský sloužil za první světové války jako vojín pěchoty (Infanterist) u <strong>c. a k. pěšího pluku „Arcivévoda Karel“ č. 3</strong>, u 16. setniny. Pluk se doplňoval z Kroměřížska a jeho mužstvo tvořili převážně Moravané; v letech 1914–1915 byl nasazen na východní frontě v Haliči a v Karpatech.</p>
+            <p data-i18n="wwi_p2">Josef byl <strong>raněn střelou do krku</strong> (Schuß in den Hals). Podle všeho k tomu došlo během karpatských bojů v zimě 1914/15; léčil se v <strong>c. a k. válečné nemocnici v Budapešti</strong> (Soroksári út), kam byli evakuováni ranění z východní fronty. Jeho jméno bylo uvedeno v rakousko-uherském seznamu ztrát („Nachrichten über Verwundete und Verletzte“) vydaném <strong>9. března 1915</strong>. Zranění přežil a vrátil se domů do Strání.</p>
+            <p class="note" data-i18n="wwi_src">Pramen: c. a k. seznam ztrát („Nachrichten über Verwundete und Verletzte“), 9. března 1915, s. 21 — c. a k. pěší pluk „Arcivévoda Karel“ č. 3, 16. setnina. Datum a místo zranění jsou odvozeny z bojové cesty pluku a z evakuace raněných do Budapešti.</p>
+        </section>
+
+        <section id="odboj">
+            <h2 class="section-title"><span class="eyebrow" data-i18n="eb_odboj">Domácí odboj</span><span data-i18n="t_odboj">Organizace VELA</span></h2>
+            <p data-i18n="odboj_p1">Josef Janovský se zapojil do odboje již v roce 1939 ve Strání; podle pozůstalostních materiálů jej získal jeho bratr <strong>František Janovský</strong>. Stal se příslušníkem <strong>podzemních vojsk lidové armády „VELA“</strong>, působících v prostoru východní Moravy a Slezska.</p>
+            <p data-i18n="odboj_p2">Jeho hlavním úkolem bylo <strong>převádět přes střeženou hranici Protektorátu na Slovensko</strong> československé občany — vlastence a dobrovolníky, kteří se chtěli dostat do zahraničního odboje. Tuto činnost umožňovala právě jeho práce hajného a důvěrná znalost lesních přechodů.</p>
+
+            <p data-i18n="odboj_p3">Tato činnost nebyla ojedinělá a zapadala do širší převaděčské sítě na moravsko-slovenském pomezí, navázané na odbojovou organizaci <strong>Obrana národa</strong>. Ve Strání se kolem převaděče <strong>Vítězslava Klímy-Kiena</strong> vytvořila celá skupina, která zajišťovala úkryty a podmínky k převádění uprchlíků přes hranici v úseku Strání–Květná. Podle studie historičky Miroslavy Polákové patřili k jejím spolupracovníkům od počátku okupace mimo jiné Josef Kohn, František Neškera, Ondřej Jankových a také <strong>Martin Janovský</strong>, Janovského nejstarší syn, a jeho bratr <strong>František Janovský</strong>.</p>
+            <p data-i18n="odboj_p4">Touto cestou se na Slovensko a dále přes Maďarsko a Turecko dostávali lidé směřující do zahraniční armády i pronásledovaní židovští uprchlíci z uherskobrodského ghetta. Práce hajného a důvěrná znalost lesních přechodů z něj činily jeden z klíčových článků tohoto řetězu.</p>
+
+            <blockquote>
+                <span data-i18n="bq_vela">„Potvrzujeme, že byl členem podzemních vojsk lidové armády (»Vela«) pro východní Moravu a Slezsko. Osvědčujeme současně, že rozkazy plnil přesně, statečně a s plnou oddaností odboji.“</span>
+                <span class="src" data-i18n="bq_vela_s">— Poválečné osvědčení organizace VELA, potvrzené vrchním politickým komisařem a vrchním velitelem</span>
+            </blockquote>
+        </section>
+
+        <section id="zatceni">
+            <h2 class="section-title"><span class="eyebrow" data-i18n="eb_zat">Pronásledování</span><span data-i18n="t_zat">Zatčení, stanný soud a konfiskace</span></h2>
+            <p data-i18n="zat_p1">Josef Janovský byl <strong>3. září 1941</strong> zadržen německou pohraniční hlídkou přímo při převádění osob přes hranici u celního úřadu. Po vyšetřovací vazbě v Uherském Hradišti byl předán brněnskému gestapu.</p>
+            <p data-i18n="zat_p2">Dne <strong>17. listopadu 1941</strong> nad ním v Brně vynesl německý stanný soud (Standgericht der Staatspolizeileitstelle Brünn) nekompromisní rozsudek. Janovský byl přitom zatčen již 3. září 1941, tedy <strong>ještě před vyhlášením civilního výjimečného stavu</strong> (28. září 1941), podle něhož byl následně odsouzen. Stíhání tak postrádalo zákonný podklad i podle samotných nacistických předpisů a mělo zpětnou účinnost.</p>
+
+            <ul class="details-list">
+                <li data-i18n="zat_l1"><strong>Soudní senát:</strong> SS-Sturmbannführer, vládní rada Ebert (předseda), SS-Untersturmführer kriminální sekretáři Preßlauer a Regelsberger (přísedící).</li>
+                <li data-i18n="zat_l2"><strong>Obvinění:</strong> zločin narušení veřejné bezpečnosti podle § 3 a § 4 nařízení Říšského protektora o civilním výjimečném stavu z 27. 9. 1941.</li>
+                <li data-i18n="zat_l3"><strong>Skutek:</strong> soustavné převádění osob přes hranici (v rozsudku „fortgesetzter Menschenschmuggel“).</li>
+                <li data-i18n="zat_l4"><strong>Výrok:</strong> předání tajné státní policii (gestapu), <strong>zabavení veškerého majetku</strong>, rozsudek označen za nezvratný (unanfechtbar).</li>
+            </ul>
+
+            <p data-i18n="zat_p3">Na základě rozsudku byly zablokovány a zabaveny jeho úspory — vklady u <strong>Pražské městské spořitelny</strong> (Prag I, Rittergasse 536) a u <strong>Záložny Vinohradské</strong> (Weinberger Vorschusskasse, Irská 22). Zablokování majetku proběhlo na přelomu let 1941 a 1942 prostřednictvím Ústředního svazu peněžnictví v Čechách a na Moravě.</p>
+
+            <h3 style="font-size:1.25rem;font-weight:normal;color:var(--dark);margin:38px 0 6px;" data-i18n="zat_h3">Soudci stanného soudu</h3>
+            <p data-i18n="zat_p4">Senát stanného soudu, jenž Janovského odsoudil k trestu smrti, tvořili příslušníci SS, představitelé brněnské řídící úřadovny gestapa, v jejímž vedení se policejní a esesácký aparát zcela prolínaly.</p>
+            <ul class="details-list">
+                <li data-i18n="judge_ebert"><strong>Hermann Ebert</strong> (předseda senátu) — SS-Sturmbannführer a vládní rada, v letech 1941–1943 zástupce vedoucího brněnské řídící úřadovny gestapa. Narozen roku 1911 v Lipsku. Jeho kariéra se zastavila na hodnosti vládního rady; po válce nebyl souzen.</li>
+                <li data-i18n="judge_regel"><strong>Josef Regelsberger</strong> (přísedící) — SS-Untersturmführer, kriminální sekretář, vedl referát kartoték brněnského gestapa. Rakušan, do NSDAP vstoupil již v dubnu 1931 („starý bojovník“). Při důstojnické zkoušce SS dostala jeho hlavní písemná práce na téma „1918 a 1943“ nejhorší možnou známku s posudkem <em>„Téma nepochopil“</em>; jeho vzdělání tvořilo pouhých pět tříd obecné školy. Důstojnickou hodnost získal patrně hlavně díky stranickým zásluhám.</li>
+                <li data-i18n="judge_press"><strong>Preßlauer</strong> (přísedící) — SS-Untersturmführer, kriminální sekretář. Bližší údaje o něm se v dostupných pramenech nedochovaly.</li>
+            </ul>
+            <p data-i18n="zat_p5">Nadřízeným celé úřadovny byl <strong>Wilhelm Nölle</strong> (nar. 1904), vedoucí brněnského gestapa. Také jeho kariéra ilustruje poměry uvnitř aparátu: na vládního radu byl povýšen po pouhých sedmi měsících, v rozporu s tehdejšími předpisy. Po válce nebyl potrestán, ačkoli jej československá komise pro stíhání válečných zločinců vedla ještě v roce 1967.</p>
+        </section>
+
+        <section id="mauthausen">
+            <h2 class="section-title"><span class="eyebrow" data-i18n="eb_mau">Závěr cesty</span><span data-i18n="t_mau">Koncentrační tábor Mauthausen</span></h2>
+            <p data-i18n="mau_p1">Josef Janovský byl deportován do koncentračního tábora <strong>Mauthausen</strong>. Táborový seznam příchozích (Liste der Zugänge) jej zaznamenává mezi vězni přijatými <strong>4. prosince 1941</strong>, pod vězeňským číslem <strong>1153</strong> a označením „Arbeiter“. Jeho jméno se objevuje i v táborových „seznamech zemřelých“ (Totenlisten).</p>
+            <p data-i18n="mau_p2">Podle českých i rakouských archivních dokladů byl <strong>4. února 1942 popraven v Linci</strong> (v rámci komplexu Mauthausen). Jeho pozůstalost byla pro nedostatek jmění odbyta u Okresního soudu v Uherském Brodě dne 20. března 1942.</p>
+
+            <ul class="timeline">
+                <li><span class="date" data-i18n="tl1d">1939, Strání</span><span class="ev" data-i18n="tl1e">Vstup do odboje (organizace VELA)</span></li>
+                <li><span class="date" data-i18n="tl2d">3. září 1941</span><span class="ev" data-i18n="tl2e">Zatčen pohraniční hlídkou při převádění přes hranici</span></li>
+                <li><span class="date" data-i18n="tl3d">17. listopadu 1941, Brno</span><span class="ev" data-i18n="tl3e">Odsouzen stanným soudem, předán gestapu</span></li>
+                <li><span class="date" data-i18n="tl4d">4. prosince 1941</span><span class="ev" data-i18n="tl4e">Přijat do KT Mauthausen — vězeň č. 1153</span></li>
+                <li><span class="date" data-i18n="tl5d">4. února 1942, Linec</span><span class="ev" data-i18n="tl5e">Popraven</span></li>
+            </ul>
+        </section>
+
+        <section id="uznani">
+            <h2 class="section-title"><span class="eyebrow" data-i18n="eb_uzn">Po válce</span><span data-i18n="t_uzn">Posmrtné uznání</span></h2>
+            <p data-i18n="uzn_p1">Za nejvyšší oběť byl Josefu Janovskému prezidentem republiky udělen <strong>Československý válečný kříž 1939 „In memoriam“</strong>, datovaný v Praze dne 8. dubna 1946 (číslo matriky 21.202).</p>
+            <p data-i18n="uzn_p2">Na žádost syna <strong>Antonína Janovského</strong> (nar. 1933, Starý Hrozenkov 76) z roku 1995 vydalo Ministerstvo obrany ČR dne <strong>1. února 1996</strong> (č. j. 318244/1995) potvrzení podle zákona č. 255/1946 Sb. Josef Janovský byl v něm úředně uznán <strong>československým politickým vězněm v době od 3. září 1941 do 4. února 1942</strong>.</p>
+            <blockquote>
+                <span data-i18n="bq_uzn">„…byl popraven v Linci dne 4. února 1942. Jeho pozůstalost byla u Okresního soudu v Uherském Brodě pro nedostatek jmění odbyta dne 20. března téhož roku.“</span>
+                <span class="src" data-i18n="bq_uzn_s">— Archivní výpis, Státní okresní archiv Uherské Hradiště, 1995</span>
+            </blockquote>
+        </section>
+
+        <section id="galerie">
+            <h2 class="section-title"><span class="eyebrow" data-i18n="eb_gal">Archiv</span><span data-i18n="t_gal">Historické dokumenty</span></h2>
+            <p class="note" data-i18n="gal_note">Archivní materiály dokládající odbojovou činnost, soudní proces, deportaci a poválečné uznání. Kliknutím na náhled zobrazíte dokument v plné velikosti.</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img03.jpg" alt="Josef Janovský — dobová fotografie">
+                    <div class="cap"><strong data-i18n="c1t">Josef Janovský</strong><span data-i18n="c1s">Dobová fotografie</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img04.jpg" alt="Rodní a křestní kniha obce Strání, 1. října 1891">
+                    <div class="cap"><strong data-i18n="c10t">Rodní a křestní kniha</strong><span data-i18n="c10s">Strání, 1. října 1891 — kniha 22, s. 103</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img05.png" alt="Seznam ztrát — raněn, 9. března 1915">
+                    <div class="cap"><strong data-i18n="c11t">Seznam ztrát — raněn</strong><span data-i18n="c11s">Verlustliste, 9. března 1915, s. 21 (IR č. 3)</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img06.jpg" alt="Osvědčení VELA">
+                    <div class="cap"><strong data-i18n="c2t">Osvědčení organizace VELA</strong><span data-i18n="c2s">Potvrzení o členství v odboji</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img07.jpg" alt="Rozsudek stanného soudu">
+                    <div class="cap"><strong data-i18n="c3t">Rozsudek stanného soudu</strong><span data-i18n="c3s">Gestapo Brno, 17. listopadu 1941</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img08.jpg" alt="Zabavení majetku">
+                    <div class="cap"><strong data-i18n="c4t">Zabavení majetku</strong><span data-i18n="c4s">Záložna Vinohradská, prosinec 1941</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img09.jpg" alt="Seznam příchozích Mauthausen">
+                    <div class="cap"><strong data-i18n="c5t">Kniha příchozích</strong><span data-i18n="c5s">KT Mauthausen, 4. 12. 1941, č. 1153</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img10.jpg" alt="Totenliste Mauthausen">
+                    <div class="cap"><strong data-i18n="c6t">Seznam zemřelých</strong><span data-i18n="c6s">Totenliste KT Mauthausen, ř. 170</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img11.jpg" alt="Dotazník IV">
+                    <div class="cap"><strong data-i18n="c7t">Dotazník IV</strong><span data-i18n="c7s">Evidence popravených, MV — odbor pro pol. zpravodajství</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img12.jpg" alt="Československý válečný kříž 1939">
+                    <div class="cap"><strong data-i18n="c8t">Válečný kříž 1939</strong><span data-i18n="c8s">In memoriam, 8. dubna 1946, mat. 21.202</span></div>
+                </div>
+                <div class="gallery-item">
+                    <img onclick="openLightbox(this)" src="img13.jpg" alt="Potvrzení Ministerstva obrany">
+                    <div class="cap"><strong data-i18n="c9t">Potvrzení MO ČR</strong><span data-i18n="c9s">Politický vězeň 1941–1942, 1. 2. 1996</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="spisy">
+            <h2 class="section-title"><span class="eyebrow" data-i18n="eb_spis">Úplné spisy</span><span data-i18n="t_spis">Archivní složky k nahlédnutí</span></h2>
+            <p class="note" data-i18n="spis_note">Kompletní digitalizované spisy lze prolistovat přímo zde, nebo otevřít na celou obrazovku a stáhnout. Sken pořízen z originálů uložených ve Vojenském ústředním archivu (osvědčení podle zákona č. 255/1946 Sb.).</p>
+
+            <div class="spis-block">
+                <h3 data-i18n="spis1_h3">Osobní spis účastníka národního boje za osvobození</h3>
+                <p class="spis-meta" data-i18n="spis1_meta">Ministerstvo národní obrany, č. j. 318244/1995 — 20 stran. Obsahuje osvědčení organizace VELA, rozsudek stanného soudu v Brně (17. 11. 1941), korespondenci s archivy, doklad o popravě, Československý válečný kříž 1939 in memoriam a potvrzení MO ČR z roku 1996.</p>
+                <div class="spis-frame pdf-viewer" id="ifr-mno" data-src="spis1.pdf" title="Osobní spis MNO – Josef Janovský"><div class="pdf-loading" data-i18n="pdf_loading">Načítám spis…</div></div>
+                <p class="spis-actions"><a href="#" onclick="openPdf('ifr-mno'); return false;" data-i18n="spis_link">Otevřít spis na celou obrazovku ↗</a></p>
+            </div>
+
+            <div class="spis-block">
+                <h3 data-i18n="spis2_h3">Evidenční spis — Dotazník IV</h3>
+                <p class="spis-meta" data-i18n="spis2_meta">Ministerstvo vnitra, odbor pro politické zpravodajství — 5 stran. Evidence osob popravených za protinacistickou činnost; obsahuje rodinné údaje, okolnosti zatčení a evidenční kartu.</p>
+                <div class="spis-frame pdf-viewer" id="ifr-vvua" data-src="spis2.pdf" title="Dotazník IV – Josef Janovský"><div class="pdf-loading" data-i18n="pdf_loading">Načítám spis…</div></div>
+                <p class="spis-actions"><a href="#" onclick="openPdf('ifr-vvua'); return false;" data-i18n="spis_link2">Otevřít spis na celou obrazovku ↗</a></p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p class="honor" data-i18n="foot_honor">Čest jeho památce a všem obětem protifašistického odboje.</p>
+        <p class="sources" data-i18n="foot_src">Zdroje: Moravský zemský archiv v Brně · Státní okresní archiv Uherské Hradiště · Státní ústřední archiv v Praze · Vojenský historický archiv (Ministerstvo obrany ČR) · Arolsen Archives (Mezinárodní pátrací služba) · Archiv KZ-Gedenkstätte Mauthausen · farní matrika Strání. — Sekundární literatura: M. Poláková, „Židé v Uherském Brodě a konečné řešení židovské otázky v období protektorátu na moravsko-slovenském pomezí“ (Studia Historica Nitriensia, 2016); J. Zumr, „Splývání německé policie a SS na příkladu tajné státní policie v Protektorátu Čechy a Morava“ (Securitas Imperii 40, 2022).</p>
+    </footer>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <a href="#" class="lb-close" onclick="closeLightbox(event); return false;" aria-label="Zavřít">&times;</a>
+        <img id="lb-img" src="" alt="">
+        <div class="lb-cap" id="lb-cap"></div>
+        <div class="lb-hint" data-i18n="lb_hint">Klikněte kamkoli nebo stiskněte Esc pro zavření</div>
+    </div>
+
+    <script>
+        function openLightbox(img) {
+            var lb = document.getElementById('lightbox');
+            document.getElementById('lb-img').src = img.src;
+            document.getElementById('lb-img').alt = img.alt || '';
+            document.getElementById('lb-cap').textContent = img.alt || '';
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLightbox(e) {
+            // zavři jen při kliknutí na pozadí, křížek nebo Esc – ne na samotný obrázek
+            if (e && e.target && e.target.id === 'lb-img') return;
+            document.getElementById('lightbox').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+        function openPdf(id) {
+            var src = document.getElementById(id).getAttribute('data-src');
+            if (src.slice(0,5) !== 'data:') { window.open(src, '_blank'); return; }
+            var w = window.open();
+            if (w) { w.document.write('<iframe src="'+src+'" style="position:fixed;inset:0;width:100%;height:100%;border:0"></iframe>'); }
+        }
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        (function () {
+            if (!window.pdfjsLib) return;
+            pdfjsLib.GlobalWorkerOptions.workerSrc =
+                'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+            function dataUriToUint8Array(dataUri) {
+                var base64 = dataUri.split(',')[1];
+                var binary = atob(base64);
+                var len = binary.length;
+                var bytes = new Uint8Array(len);
+                for (var i = 0; i < len; i++) bytes[i] = binary.charCodeAt(i);
+                return bytes;
+            }
+
+            function renderViewer(container) {
+                var dataUri = container.getAttribute('data-src');
+                if (!dataUri) return;
+                var task = (dataUri.slice(0,5) === 'data:')
+                    ? pdfjsLib.getDocument({ data: dataUriToUint8Array(dataUri) })
+                    : pdfjsLib.getDocument(dataUri);
+                task.promise.then(function (pdf) {
+                    container.innerHTML = '';
+                    var chain = Promise.resolve();
+                    for (var p = 1; p <= pdf.numPages; p++) {
+                        (function (pageNum) {
+                            chain = chain.then(function () {
+                                return pdf.getPage(pageNum).then(function (page) {
+                                    var dpr = window.devicePixelRatio || 1;
+                                    var containerWidth = container.clientWidth - 24;
+                                    var base = page.getViewport({ scale: 1 });
+                                    var scale = (containerWidth / base.width) * dpr;
+                                    var viewport = page.getViewport({ scale: scale });
+                                    var label = document.createElement('div');
+                                    label.className = 'pdf-pagenum';
+                                    label.setAttribute('data-page', pageNum);
+                                    label.setAttribute('data-total', pdf.numPages);
+                                    label.textContent = window.pdfPageLabel ? window.pdfPageLabel(pageNum, pdf.numPages) : (pageNum + ' / ' + pdf.numPages);
+                                    var canvas = document.createElement('canvas');
+                                    var ctx = canvas.getContext('2d');
+                                    canvas.width = viewport.width;
+                                    canvas.height = viewport.height;
+                                    container.appendChild(label);
+                                    container.appendChild(canvas);
+                                    return page.render({ canvasContext: ctx, viewport: viewport }).promise;
+                                });
+                            });
+                        })(p);
+                    }
+                    return chain;
+                }).catch(function (err) {
+                    container.innerHTML =
+                        '<div class="pdf-loading" data-i18n="pdf_error">Spis se nepodařilo načíst v prohlížeči. ' +
+                        'Použijte odkaz „Otevřít spis na celou obrazovku“.</div>';
+                    if (window.applyLangTo) window.applyLangTo(container);
+                    console.error('PDF render error:', err);
+                });
+            }
+
+            function init() {
+                var viewers = document.querySelectorAll('.pdf-viewer');
+                for (var i = 0; i < viewers.length; i++) renderViewer(viewers[i]);
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+        })();
+    </script>
+
+
+    <script>
+    (function(){
+        var DICT = { en: {"nav_wwi": "First World War", "eb_wwi": "Austro-Hungarian army", "t_wwi": "During the First World War", "wwi_p1": "During the First World War, Josef Janovský served as an infantryman (Infanterist) in the <strong>Imperial and Royal Infantry Regiment „Archduke Charles“ No. 3</strong>, in the 16th company. The regiment drew its recruits from the Kroměříž (Kremsier) district of Moravia and was manned largely by Moravians; in 1914–1915 it fought on the Eastern Front in Galicia and the Carpathians.", "wwi_p2": "Josef was <strong>wounded by a gunshot to the neck</strong> (Schuß in den Hals). This most likely occurred during the Carpathian fighting in the winter of 1914–15; he was treated at the <strong>Imperial and Royal war hospital in Budapest</strong> (Soroksári út), where casualties from the Eastern Front were evacuated. His name appeared in the Austro-Hungarian casualty list („Nachrichten über Verwundete und Verletzte“) issued on <strong>9 March 1915</strong>. He survived his wound and returned home to Strání.", "wwi_src": "Source: Austro-Hungarian casualty list („Nachrichten über Verwundete und Verletzte“), 9 March 1915, p. 21 — I.R. „Archduke Charles“ No. 3, 16th company. The date and place of the wounding are inferred from the regiment’s combat route and the evacuation of casualties to Budapest.", "c10t": "Birth &amp; baptism register", "c10s": "Strání, 1 October 1891 — book 22, p. 103", "c11t": "Casualty list — wounded", "c11s": "Verlustliste, 9 March 1915, p. 21 (I.R. No. 3)", "nav_bio": "Biography", "nav_odboj": "Resistance (VELA)", "nav_zat": "Arrest & Trial", "nav_mau": "Mauthausen", "nav_uzn": "Recognition", "nav_gal": "Documents", "nav_spis": "Files (PDF)", "hero_ep": "“In recognition of the merit in combat earned in the struggle for the liberation of the Czechoslovak Republic from enemy occupation.”", "eb_bio": "Personal profile", "t_bio": "A forester from the Moravian–Slovak borderland", "bio_p1": "<strong>Josef Janovský</strong> was born on 1 October 1891 in the border village of Strání (Uherský Brod district, formerly Uherské Hradiště) on the Moravian–Slovak frontier. He came from house no. 91 and was the son of the cottager Josef Janovský the elder and of Anna, née Zajglová. His mother Magdalena was the daughter of Martin Popelka, a quarter-holder farmer in Strání. In contemporary records Janovský is listed as a „půlčtvrtník“ (a smallholding peasant) and gamekeeper in Strání. He was a Roman Catholic and, before the war, was affiliated with the Czechoslovak Social Democracy.", "bio_p2": "With his wife Magdalena (née Popelková) he had several children — the sons Martin, Josef, Jan and Antonín and the daughters Marie and Anežka. The eldest son, Martin, also became involved in guiding people across the border during the war. Janovský worked as a municipal gamekeeper (in German records „Waldheger“) and as a forestry labourer directly on the border in the White Carpathians. After the Nazi occupation in 1939, his thorough knowledge of the local terrain became the basis of his resistance activity.", "f_naroz_k": "Born", "f_naroz_v": "1 October 1891, Strání no. 91, Uherský Brod district", "f_pov_k": "Occupation", "f_pov_v": "Municipal gamekeeper and forestry labourer", "f_rod_k": "Family", "f_rod_v": "Wife Magdalena née Popelková; children Martin, Marie, Anežka, Josef, Jan and Antonín", "f_odb_k": "Resistance", "f_odb_v": "Underground troops of the People’s Army „VELA“ — eastern Moravia and Silesia", "f_umr_k": "Death", "f_umr_v": "Executed 4 February 1942, Linz (Mauthausen concentration camp)", "eb_odboj": "Home resistance", "t_odboj": "The VELA organisation", "odboj_p1": "Josef Janovský joined the resistance as early as 1939 in Strání; according to surviving family papers he was recruited by his brother <strong>František Janovský</strong>. He became a member of the <strong>underground troops of the People’s Army „VELA“</strong>, which operated in the area of eastern Moravia and Silesia.", "odboj_p2": "His principal task was to <strong>guide Czechoslovak citizens across the guarded border of the Protectorate into Slovakia</strong> — patriots and volunteers seeking to reach the resistance abroad. This activity was made possible precisely by his work as a gamekeeper and his intimate knowledge of the forest crossings.", "odboj_p3": "This activity was not an isolated one; it formed part of a wider escape network on the Moravian–Slovak frontier, linked to the resistance organisation <strong>Obrana národa</strong> (Defence of the Nation). In Strání an entire group formed around the guide <strong>Vítězslav Klíma-Kien</strong>, which provided shelter and the conditions for leading refugees across the border in the Strání–Květná section. According to a study by the historian Miroslava Poláková, its collaborators from the beginning of the occupation included, among others, Josef Kohn, František Neškera, Ondřej Jankových, as well as <strong>Martin Janovský</strong>, Janovský’s eldest son, and his brother <strong>František Janovský</strong>.", "odboj_p4": "By this route, people bound for the army abroad as well as persecuted Jewish refugees from the Uherský Brod ghetto reached Slovakia and continued on through Hungary and Turkey. His work as a gamekeeper and his intimate knowledge of the forest crossings made him one of the key links in this chain.", "bq_vela": "“We confirm that he was a member of the underground troops of the People’s Army (»Vela«) for eastern Moravia and Silesia. We further attest that he carried out orders precisely, bravely and with full devotion to the resistance.”", "bq_vela_s": "— Post-war certificate of the VELA organisation, confirmed by the chief political commissar and the commander-in-chief", "eb_zat": "Persecution", "t_zat": "Arrest, summary court and confiscation", "zat_p1": "Josef Janovský was detained on <strong>3 September 1941</strong> by a German border patrol while leading people across the border at the customs office. After investigative custody in Uherské Hradiště, he was handed over to the Brno Gestapo.", "zat_p2": "On <strong>17 November 1941</strong> a German summary court (Standgericht der Staatspolizeileitstelle Brünn) passed an uncompromising sentence on him in Brno. Janovský had, however, been arrested as early as 3 September 1941 — that is, <strong>before the civil state of emergency was declared</strong> (28 September 1941), under which he was subsequently sentenced. The prosecution thus lacked a legal basis even by the Nazis’ own regulations and was retroactive in effect.", "zat_l1": "<strong>Court panel:</strong> SS-Sturmbannführer, government counsellor Ebert (presiding); SS-Untersturmführer, criminal secretaries Preßlauer and Regelsberger (associate judges).", "zat_l2": "<strong>Charge:</strong> the crime of disturbing public security under §§ 3 and 4 of the Reich Protector’s decree on the civil state of emergency of 27 September 1941.", "zat_l3": "<strong>Offence:</strong> the systematic guiding of persons across the border (in the verdict „fortgesetzter Menschenschmuggel“).", "zat_l4": "<strong>Ruling:</strong> handover to the Secret State Police (Gestapo); <strong>confiscation of all property</strong>; the verdict declared incontestable (unanfechtbar).", "zat_p3": "On the basis of the verdict his savings were blocked and confiscated — deposits at the <strong>Prague Municipal Savings Bank</strong> (Prag I, Rittergasse 536) and at the <strong>Vinohrady Loan Bank</strong> (Weinberger Vorschusskasse, Irská 22). The blocking of the property was carried out at the turn of 1941–1942 through the Central Union of Banking in Bohemia and Moravia.", "zat_h3": "The judges of the summary court", "zat_p4": "The panel of the summary court that sentenced Janovský to death was composed of members of the SS — representatives of the Brno Gestapo regional headquarters, in whose leadership the police and SS apparatus had entirely merged.", "judge_ebert": "<strong>Hermann Ebert</strong> (presiding judge) — SS-Sturmbannführer and government counsellor, in 1941–1943 deputy head of the Brno Gestapo regional headquarters. Born in 1911 in Leipzig. His career stalled at the rank of government counsellor; he was not tried after the war.", "judge_regel": "<strong>Josef Regelsberger</strong> (associate judge) — SS-Untersturmführer, criminal secretary, head of the card-index section of the Brno Gestapo. An Austrian, he joined the NSDAP as early as April 1931 (an „old fighter“). At his SS officer examination his principal written work on the topic „1918 and 1943“ received the lowest possible mark with the assessment <em>“He failed to grasp the topic.”</em> His education amounted to a mere five grades of elementary school. He probably owed his officer’s rank chiefly to party merit.", "judge_press": "<strong>Preßlauer</strong> (associate judge) — SS-Untersturmführer, criminal secretary. No further details about him have survived in the available sources.", "zat_p5": "The superior of the entire office was <strong>Wilhelm Nölle</strong> (b. 1904), head of the Brno Gestapo. His career too illustrates conditions within the apparatus: he was promoted to government counsellor after a mere seven months, in breach of the regulations then in force. He went unpunished after the war, although the Czechoslovak commission for the prosecution of war criminals still listed him as late as 1967.", "eb_mau": "The end of the road", "t_mau": "Mauthausen concentration camp", "mau_p1": "Josef Janovský was deported to the <strong>Mauthausen</strong> concentration camp. The camp’s list of arrivals (Liste der Zugänge) records him among the prisoners admitted on <strong>4 December 1941</strong>, under prisoner number <strong>1153</strong> and the designation „Arbeiter“ (labourer). His name also appears in the camp’s „lists of the dead“ (Totenlisten).", "mau_p2": "According to both Czech and Austrian archival records he was <strong>executed in Linz on 4 February 1942</strong> (within the Mauthausen complex). For want of assets, his estate was settled at the District Court in Uherský Brod on 20 March 1942.", "tl1d": "1939, Strání", "tl1e": "Joins the resistance (VELA organisation)", "tl2d": "3 September 1941", "tl2e": "Arrested by a border patrol while leading people across the border", "tl3d": "17 November 1941, Brno", "tl3e": "Sentenced by the summary court, handed over to the Gestapo", "tl4d": "4 December 1941", "tl4e": "Admitted to Mauthausen concentration camp — prisoner no. 1153", "tl5d": "4 February 1942, Linz", "tl5e": "Executed", "eb_uzn": "After the war", "t_uzn": "Posthumous recognition", "uzn_p1": "For his supreme sacrifice, Josef Janovský was awarded by the President of the Republic the <strong>Czechoslovak War Cross 1939 „In memoriam“</strong>, dated in Prague on 8 April 1946 (register number 21,202).", "uzn_p2": "At the request of his son <strong>Antonín Janovský</strong> (b. 1933, Starý Hrozenkov 76) in 1995, the Ministry of Defence of the Czech Republic issued, on <strong>1 February 1996</strong> (ref. no. 318244/1995), a certificate under Act No. 255/1946 Coll. In it, Josef Janovský was officially recognised as a <strong>Czechoslovak political prisoner from 3 September 1941 to 4 February 1942</strong>.", "bq_uzn": "“…was executed in Linz on 4 February 1942. For want of assets, his estate was settled at the District Court in Uherský Brod on 20 March of the same year.”", "bq_uzn_s": "— Archival extract, State District Archive Uherské Hradiště, 1995", "eb_gal": "Archive", "t_gal": "Historical documents", "gal_note": "Archival materials documenting the resistance activity, the trial, the deportation and the post-war recognition. Click a thumbnail to view the document at full size.", "c1t": "Josef Janovský", "c1s": "Period photograph", "c2t": "VELA organisation certificate", "c2s": "Confirmation of resistance membership", "c3t": "Summary court verdict", "c3s": "Gestapo Brno, 17 November 1941", "c4t": "Confiscation of property", "c4s": "Vinohrady Loan Bank, December 1941", "c5t": "List of arrivals", "c5s": "Mauthausen camp, 4 Dec 1941, no. 1153", "c6t": "List of the dead", "c6s": "Totenliste, Mauthausen camp, line 170", "c7t": "Questionnaire IV", "c7s": "Register of the executed, Ministry of the Interior — political intelligence dept.", "c8t": "War Cross 1939", "c8s": "In memoriam, 8 April 1946, reg. 21,202", "c9t": "Certificate, Ministry of Defence (CR)", "c9s": "Political prisoner 1941–1942, 1 Feb 1996", "eb_spis": "Complete files", "t_spis": "Archival folders to browse", "spis_note": "The complete digitised files can be browsed directly here, or opened full-screen and downloaded. Scanned from the originals held at the Central Military Archive (certificate under Act No. 255/1946 Coll.).", "spis1_h3": "Personal file of a participant in the national liberation struggle", "spis1_meta": "Ministry of National Defence, ref. no. 318244/1995 — 20 pages. Contains the VELA organisation certificate, the verdict of the Brno summary court (17 Nov 1941), correspondence with archives, the record of execution, the Czechoslovak War Cross 1939 in memoriam and the 1996 certificate of the Ministry of Defence (CR).", "spis2_h3": "Registration file — Questionnaire IV", "spis2_meta": "Ministry of the Interior, department of political intelligence — 5 pages. Register of persons executed for anti-Nazi activity; contains family data, the circumstances of the arrest and a registration card.", "spis_link": "Open the file full-screen ↗", "spis_link2": "Open the file full-screen ↗", "pdf_loading": "Loading file…", "pdf_error": "The file could not be displayed in the browser. Please use the link “Open the file full-screen”.", "foot_honor": "Honour to his memory and to all victims of the anti-fascist resistance.", "foot_src": "Sources: Moravian Provincial Archive in Brno · State District Archive Uherské Hradiště · State Central Archive in Prague · Military Historical Archive (Ministry of Defence, CR) · Arolsen Archives (International Tracing Service) · Archive of the Mauthausen Memorial · Strání parish register. — Secondary literature: M. Poláková, „Židé v Uherském Brodě a konečné řešení židovské otázky v období protektorátu na moravsko-slovenském pomezí“ (Studia Historica Nitriensia, 2016); J. Zumr, „Splývání německé policie a SS na příkladu tajné státní policie v Protektorátu Čechy a Morava“ (Securitas Imperii 40, 2022).", "lb_hint": "Click anywhere or press Esc to close"}, de: {"nav_wwi": "Erster Weltkrieg", "eb_wwi": "k. u. k. Armee", "t_wwi": "Im Ersten Weltkrieg", "wwi_p1": "Im Ersten Weltkrieg diente Josef Janovský als Infanterist beim <strong>k. u. k. Infanterieregiment „Erzherzog Karl“ Nr. 3</strong>, in der 16. Kompanie. Das Regiment ergänzte sich aus dem Bezirk Kremsier (Kroměříž) in Mähren und bestand überwiegend aus Mährern; 1914–1915 stand es an der Ostfront in Galizien und in den Karpaten.", "wwi_p2": "Josef erlitt einen <strong>Schuss in den Hals</strong>. Dies geschah höchstwahrscheinlich während der Karpatenkämpfe im Winter 1914/15; er wurde im <strong>k. u. k. Kriegsspital in Budapest</strong> (Soroksári út) behandelt, wohin die Verwundeten von der Ostfront abtransportiert wurden. Sein Name erschien in der österreichisch-ungarischen Verlustliste („Nachrichten über Verwundete und Verletzte“), ausgegeben am <strong>9. März 1915</strong>. Er überlebte seine Verwundung und kehrte nach Strání zurück.", "wwi_src": "Quelle: k. u. k. Verlustliste („Nachrichten über Verwundete und Verletzte“), 9. März 1915, S. 21 — I.R. „Erzherzog Karl“ Nr. 3, 16. Kompanie. Datum und Ort der Verwundung sind aus dem Kriegsweg des Regiments und der Abtransportierung der Verwundeten nach Budapest erschlossen.", "c10t": "Geburts- und Taufmatrikel", "c10s": "Strání, 1. Oktober 1891 — Buch 22, S. 103", "c11t": "Verlustliste — verwundet", "c11s": "Verlustliste, 9. März 1915, S. 21 (I.R. Nr. 3)", "nav_bio": "Biografie", "nav_odboj": "Widerstand (VELA)", "nav_zat": "Verhaftung & Prozess", "nav_mau": "Mauthausen", "nav_uzn": "Anerkennung", "nav_gal": "Dokumente", "nav_spis": "Akten (PDF)", "hero_ep": "„In Anerkennung der im Kampf um die Befreiung der Tschechoslowakischen Republik von der feindlichen Besetzung erworbenen Verdienste.“", "eb_bio": "Persönliches Profil", "t_bio": "Ein Förster aus dem mährisch-slowakischen Grenzland", "bio_p1": "<strong>Josef Janovský</strong> wurde am 1. Oktober 1891 im Grenzdorf Strání (Bezirk Uherský Brod, früher Uherské Hradiště) im mährisch-slowakischen Grenzland geboren. Er stammte aus dem Haus Nr. 91 und war der Sohn des Häuslers Josef Janovský des Älteren und der Anna, geborene Zajglová. Seine Mutter Magdalena war die Tochter des Martin Popelka, eines Viertelbauern in Strání. In zeitgenössischen Unterlagen wird Janovský als „půlčtvrtník“ (Kleinbauer) und Heger in Strání geführt. Er war römisch-katholisch und bekannte sich vor dem Krieg zur tschechoslowakischen Sozialdemokratie.", "bio_p2": "Mit seiner Frau Magdalena (geb. Popelková) hatte er mehrere Kinder — die Söhne Martin, Josef, Jan und Antonín sowie die Töchter Marie und Anežka. Der älteste Sohn Martin beteiligte sich während des Krieges selbst am Hinüberführen von Personen über die Grenze. Janovský arbeitete als Gemeindeheger (in deutschen Unterlagen „Waldheger“) und als Waldarbeiter unmittelbar an der Grenze in den Weißen Karpaten. Nach der nationalsozialistischen Besetzung 1939 wurde seine genaue Kenntnis des dortigen Geländes zur Grundlage seiner Widerstandstätigkeit.", "f_naroz_k": "Geburt", "f_naroz_v": "1. Oktober 1891, Strání Nr. 91, Bezirk Uherský Brod", "f_pov_k": "Beruf", "f_pov_v": "Gemeindeheger und Waldarbeiter", "f_rod_k": "Familie", "f_rod_v": "Ehefrau Magdalena geb. Popelková; Kinder Martin, Marie, Anežka, Josef, Jan und Antonín", "f_odb_k": "Widerstand", "f_odb_v": "Untergrundtruppen der Volksarmee „VELA“ — Ostmähren und Schlesien", "f_umr_k": "Tod", "f_umr_v": "Hingerichtet am 4. Februar 1942, Linz (KZ Mauthausen)", "eb_odboj": "Heimatwiderstand", "t_odboj": "Die Organisation VELA", "odboj_p1": "Josef Janovský schloss sich dem Widerstand bereits 1939 in Strání an; nach den überlieferten Nachlassunterlagen wurde er von seinem Bruder <strong>František Janovský</strong> gewonnen. Er wurde Angehöriger der <strong>Untergrundtruppen der Volksarmee „VELA“</strong>, die im Raum Ostmähren und Schlesien tätig waren.", "odboj_p2": "Seine Hauptaufgabe bestand darin, <strong>tschechoslowakische Bürger über die bewachte Grenze des Protektorats in die Slowakei zu führen</strong> — Patrioten und Freiwillige, die in den Widerstand im Ausland gelangen wollten. Möglich machte diese Tätigkeit gerade seine Arbeit als Heger und seine vertraute Kenntnis der Waldübergänge.", "odboj_p3": "Diese Tätigkeit war kein Einzelfall; sie fügte sich in ein umfassenderes Fluchthelfernetz im mährisch-slowakischen Grenzland ein, das mit der Widerstandsorganisation <strong>Obrana národa</strong> (Verteidigung der Nation) verbunden war. In Strání bildete sich um den Fluchthelfer <strong>Vítězslav Klíma-Kien</strong> eine ganze Gruppe, die Unterschlupf und die Bedingungen für das Hinüberführen von Flüchtlingen über die Grenze im Abschnitt Strání–Květná sicherstellte. Nach einer Studie der Historikerin Miroslava Poláková gehörten zu ihren Mitarbeitern von Beginn der Besetzung an unter anderem Josef Kohn, František Neškera, Ondřej Jankových sowie <strong>Martin Janovský</strong>, Janovskýs ältester Sohn, und sein Bruder <strong>František Janovský</strong>.", "odboj_p4": "Auf diesem Weg gelangten sowohl Menschen, die zur Auslandsarmee strebten, als auch verfolgte jüdische Flüchtlinge aus dem Ghetto von Uherský Brod in die Slowakei und weiter über Ungarn und die Türkei. Seine Arbeit als Heger und seine vertraute Kenntnis der Waldübergänge machten ihn zu einem der entscheidenden Glieder dieser Kette.", "bq_vela": "„Wir bestätigen, dass er Angehöriger der Untergrundtruppen der Volksarmee (»Vela«) für Ostmähren und Schlesien war. Zugleich bezeugen wir, dass er die Befehle genau, tapfer und mit voller Hingabe an den Widerstand ausführte.“", "bq_vela_s": "— Nachkriegsbescheinigung der Organisation VELA, bestätigt vom obersten politischen Kommissar und vom Oberbefehlshaber", "eb_zat": "Verfolgung", "t_zat": "Verhaftung, Standgericht und Konfiskation", "zat_p1": "Josef Janovský wurde am <strong>3. September 1941</strong> von einer deutschen Grenzstreife unmittelbar beim Hinüberführen von Personen über die Grenze beim Zollamt festgenommen. Nach der Untersuchungshaft in Uherské Hradiště wurde er der Brünner Gestapo übergeben.", "zat_p2": "Am <strong>17. November 1941</strong> fällte über ihn in Brünn ein deutsches Standgericht (Standgericht der Staatspolizeileitstelle Brünn) ein kompromissloses Urteil. Janovský war jedoch bereits am 3. September 1941 verhaftet worden — also <strong>noch vor der Verhängung des zivilen Ausnahmezustands</strong> (28. September 1941), auf dessen Grundlage er anschließend verurteilt wurde. Die Verfolgung entbehrte somit selbst nach den eigenen nationalsozialistischen Vorschriften einer gesetzlichen Grundlage und wirkte rückwirkend.", "zat_l1": "<strong>Richtersenat:</strong> SS-Sturmbannführer, Regierungsrat Ebert (Vorsitzender); SS-Untersturmführer, Kriminalsekretäre Preßlauer und Regelsberger (Beisitzer).", "zat_l2": "<strong>Anklage:</strong> Verbrechen der Störung der öffentlichen Sicherheit nach §§ 3 und 4 der Verordnung des Reichsprotektors über den zivilen Ausnahmezustand vom 27. September 1941.", "zat_l3": "<strong>Tat:</strong> fortgesetztes Hinüberführen von Personen über die Grenze (im Urteil „fortgesetzter Menschenschmuggel“).", "zat_l4": "<strong>Urteilsspruch:</strong> Übergabe an die Geheime Staatspolizei (Gestapo); <strong>Einziehung des gesamten Vermögens</strong>; das Urteil für unanfechtbar erklärt (unanfechtbar).", "zat_p3": "Aufgrund des Urteils wurden seine Ersparnisse gesperrt und eingezogen — Einlagen bei der <strong>Prager Städtischen Sparkasse</strong> (Prag I, Rittergasse 536) und bei der <strong>Weinberger Vorschusskasse</strong> (Záložna Vinohradská, Irská 22). Die Sperrung des Vermögens erfolgte zur Jahreswende 1941/1942 über den Zentralverband des Geldwesens in Böhmen und Mähren.", "zat_h3": "Die Richter des Standgerichts", "zat_p4": "Der Senat des Standgerichts, der Janovský zum Tode verurteilte, bestand aus Angehörigen der SS — Vertretern der Brünner Leitstelle der Gestapo, in deren Führung der Polizei- und SS-Apparat vollständig verschmolzen waren.", "judge_ebert": "<strong>Hermann Ebert</strong> (Senatsvorsitzender) — SS-Sturmbannführer und Regierungsrat, 1941–1943 stellvertretender Leiter der Brünner Leitstelle der Gestapo. Geboren 1911 in Leipzig. Seine Laufbahn endete im Rang eines Regierungsrats; nach dem Krieg wurde er nicht angeklagt.", "judge_regel": "<strong>Josef Regelsberger</strong> (Beisitzer) — SS-Untersturmführer, Kriminalsekretär, leitete das Karteireferat der Brünner Gestapo. Österreicher, in die NSDAP trat er bereits im April 1931 ein („alter Kämpfer“). Bei der SS-Offiziersprüfung erhielt seine schriftliche Hauptarbeit zum Thema „1918 und 1943“ die schlechtestmögliche Note mit dem Gutachten <em>„Thema nicht erfasst“</em>; seine Bildung umfasste lediglich fünf Klassen der Volksschule. Den Offiziersrang verdankte er vermutlich vor allem seinen Parteiverdiensten.", "judge_press": "<strong>Preßlauer</strong> (Beisitzer) — SS-Untersturmführer, Kriminalsekretär. Nähere Angaben zu ihm sind in den verfügbaren Quellen nicht überliefert.", "zat_p5": "Vorgesetzter der gesamten Dienststelle war <strong>Wilhelm Nölle</strong> (geb. 1904), Leiter der Brünner Gestapo. Auch seine Laufbahn veranschaulicht die Verhältnisse innerhalb des Apparats: Zum Regierungsrat wurde er nach nur sieben Monaten befördert, im Widerspruch zu den damals geltenden Vorschriften. Nach dem Krieg blieb er straflos, obwohl ihn die tschechoslowakische Kommission zur Verfolgung von Kriegsverbrechern noch 1967 führte.", "eb_mau": "Das Ende des Weges", "t_mau": "Konzentrationslager Mauthausen", "mau_p1": "Josef Janovský wurde in das Konzentrationslager <strong>Mauthausen</strong> deportiert. Die Zugangsliste des Lagers (Liste der Zugänge) verzeichnet ihn unter den am <strong>4. Dezember 1941</strong> aufgenommenen Häftlingen, mit der Häftlingsnummer <strong>1153</strong> und der Bezeichnung „Arbeiter“. Sein Name erscheint auch in den „Totenlisten“ des Lagers.", "mau_p2": "Nach tschechischen wie österreichischen Archivunterlagen wurde er am <strong>4. Februar 1942 in Linz hingerichtet</strong> (im Rahmen des Komplexes Mauthausen). Mangels Vermögens wurde sein Nachlass am 20. März 1942 beim Bezirksgericht in Uherský Brod abgewickelt.", "tl1d": "1939, Strání", "tl1e": "Eintritt in den Widerstand (Organisation VELA)", "tl2d": "3. September 1941", "tl2e": "Von einer Grenzstreife beim Hinüberführen über die Grenze verhaftet", "tl3d": "17. November 1941, Brünn", "tl3e": "Vom Standgericht verurteilt, der Gestapo übergeben", "tl4d": "4. Dezember 1941", "tl4e": "Aufnahme in das KZ Mauthausen — Häftling Nr. 1153", "tl5d": "4. Februar 1942, Linz", "tl5e": "Hingerichtet", "eb_uzn": "Nach dem Krieg", "t_uzn": "Posthume Anerkennung", "uzn_p1": "Für sein höchstes Opfer wurde Josef Janovský vom Präsidenten der Republik das <strong>Tschechoslowakische Kriegskreuz 1939 „In memoriam“</strong> verliehen, datiert in Prag am 8. April 1946 (Matrikelnummer 21.202).", "uzn_p2": "Auf Antrag seines Sohnes <strong>Antonín Janovský</strong> (geb. 1933, Starý Hrozenkov 76) aus dem Jahr 1995 stellte das Verteidigungsministerium der Tschechischen Republik am <strong>1. Februar 1996</strong> (Az. 318244/1995) eine Bescheinigung nach dem Gesetz Nr. 255/1946 Slg. aus. Darin wurde Josef Janovský amtlich als <strong>tschechoslowakischer politischer Häftling in der Zeit vom 3. September 1941 bis zum 4. Februar 1942</strong> anerkannt.", "bq_uzn": "„…wurde am 4. Februar 1942 in Linz hingerichtet. Sein Nachlass wurde mangels Vermögens am 20. März desselben Jahres beim Bezirksgericht in Uherský Brod abgewickelt.“", "bq_uzn_s": "— Archivauszug, Staatliches Bezirksarchiv Uherské Hradiště, 1995", "eb_gal": "Archiv", "t_gal": "Historische Dokumente", "gal_note": "Archivmaterialien, die die Widerstandstätigkeit, den Prozess, die Deportation und die Anerkennung nach dem Krieg belegen. Klicken Sie auf eine Vorschau, um das Dokument in voller Größe anzuzeigen.", "c1t": "Josef Janovský", "c1s": "Zeitgenössische Fotografie", "c2t": "Bescheinigung der Organisation VELA", "c2s": "Bestätigung der Mitgliedschaft im Widerstand", "c3t": "Urteil des Standgerichts", "c3s": "Gestapo Brünn, 17. November 1941", "c4t": "Vermögenseinziehung", "c4s": "Weinberger Vorschusskasse, Dezember 1941", "c5t": "Zugangsbuch", "c5s": "KZ Mauthausen, 4. 12. 1941, Nr. 1153", "c6t": "Totenliste", "c6s": "Totenliste KZ Mauthausen, Z. 170", "c7t": "Fragebogen IV", "c7s": "Verzeichnis der Hingerichteten, Innenministerium — Abt. für pol. Nachrichtenwesen", "c8t": "Kriegskreuz 1939", "c8s": "In memoriam, 8. April 1946, Matr. 21.202", "c9t": "Bescheinigung des Verteidigungsministeriums (ČR)", "c9s": "Politischer Häftling 1941–1942, 1. 2. 1996", "eb_spis": "Vollständige Akten", "t_spis": "Archivakten zur Einsicht", "spis_note": "Die vollständigen digitalisierten Akten können direkt hier durchgeblättert oder im Vollbild geöffnet und heruntergeladen werden. Gescannt nach den im Zentralen Militärarchiv verwahrten Originalen (Bescheinigung nach dem Gesetz Nr. 255/1946 Slg.).", "spis1_h3": "Personalakte eines Teilnehmers am nationalen Befreiungskampf", "spis1_meta": "Ministerium für nationale Verteidigung, Az. 318244/1995 — 20 Seiten. Enthält die Bescheinigung der Organisation VELA, das Urteil des Brünner Standgerichts (17. 11. 1941), Korrespondenz mit Archiven, den Hinrichtungsnachweis, das Tschechoslowakische Kriegskreuz 1939 in memoriam und die Bescheinigung des Verteidigungsministeriums aus dem Jahr 1996.", "spis2_h3": "Evidenzakte — Fragebogen IV", "spis2_meta": "Innenministerium, Abteilung für politisches Nachrichtenwesen — 5 Seiten. Verzeichnis der wegen antinationalsozialistischer Tätigkeit hingerichteten Personen; enthält Familiendaten, die Umstände der Verhaftung und eine Evidenzkarte.", "spis_link": "Akte im Vollbild öffnen ↗", "spis_link2": "Akte im Vollbild öffnen ↗", "pdf_loading": "Akte wird geladen…", "pdf_error": "Die Akte konnte im Browser nicht angezeigt werden. Bitte verwenden Sie den Link „Akte im Vollbild öffnen“.", "foot_honor": "Ehre seinem Andenken und allen Opfern des antifaschistischen Widerstands.", "foot_src": "Quellen: Mährisches Landesarchiv in Brünn · Staatliches Bezirksarchiv Uherské Hradiště · Staatliches Zentralarchiv in Prag · Militärhistorisches Archiv (Verteidigungsministerium der ČR) · Arolsen Archives (Internationaler Suchdienst) · Archiv der KZ-Gedenkstätte Mauthausen · Pfarrmatrikel Strání. — Sekundärliteratur: M. Poláková, „Židé v Uherském Brodě a konečné řešení židovské otázky v období protektorátu na moravsko-slovenském pomezí“ (Studia Historica Nitriensia, 2016); J. Zumr, „Splývání německé policie a SS na příkladu tajné státní policie v Protektorátu Čechy a Morava“ (Securitas Imperii 40, 2022).", "lb_hint": "Klicken Sie irgendwohin oder drücken Sie Esc zum Schließen"} };
+        var CS = {};            // captured Czech (source of truth from inline)
+        var META = {
+            cs: { title: "Josef Janovský (1891–1942) — In Memoriam", htmllang: "cs", page: function(n,t){return "Strana "+n+" / "+t;} },
+            en: { title: "Josef Janovský (1891–1942) — In Memoriam", htmllang: "en", page: function(n,t){return "Page "+n+" / "+t;} },
+            de: { title: "Josef Janovský (1891–1942) — In Memoriam", htmllang: "de", page: function(n,t){return "Seite "+n+" / "+t;} }
+        };
+        var current = "cs";
+
+        function captureCS(){
+            var els = document.querySelectorAll('[data-i18n]');
+            for (var i=0;i<els.length;i++){
+                var k = els[i].getAttribute('data-i18n');
+                if (!(k in CS)) CS[k] = els[i].innerHTML;
+            }
+        }
+        function dictFor(lang){
+            if (lang === 'cs') return CS;
+            var d = {}; for (var k in CS) d[k] = CS[k];
+            var o = DICT[lang] || {}; for (var k2 in o) d[k2] = o[k2];
+            return d;
+        }
+        window.applyLangTo = function(root){
+            var d = dictFor(current);
+            var els = root.querySelectorAll('[data-i18n]');
+            for (var i=0;i<els.length;i++){
+                var k = els[i].getAttribute('data-i18n');
+                if (d[k] != null) els[i].innerHTML = d[k];
+            }
+        };
+        window.pdfPageLabel = function(n,t){ return (META[current]||META.cs).page(n,t); };
+
+        function updatePageLabels(){
+            var labs = document.querySelectorAll('.pdf-pagenum');
+            for (var i=0;i<labs.length;i++){
+                var p = labs[i].getAttribute('data-page'), t = labs[i].getAttribute('data-total');
+                if (p && t) labs[i].textContent = window.pdfPageLabel(parseInt(p,10), parseInt(t,10));
+            }
+        }
+        window.setLang = function(lang){
+            if (!META[lang]) lang = 'cs';
+            current = lang;
+            window.applyLangTo(document);
+            updatePageLabels();
+            document.documentElement.setAttribute('lang', META[lang].htmllang);
+            document.title = META[lang].title;
+            var btns = document.querySelectorAll('.lang-switch button');
+            for (var i=0;i<btns.length;i++){
+                btns[i].classList.toggle('active', btns[i].getAttribute('data-lang')===lang);
+            }
+            try { localStorage.setItem('jj_lang', lang); } catch(e){}
+        };
+
+        function init(){
+            captureCS();
+            var saved = 'cs';
+            try { saved = localStorage.getItem('jj_lang') || 'cs'; } catch(e){}
+            window.setLang(saved);
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+        else init();
+    })();
+    </script>
+
+</body>
+</html>
